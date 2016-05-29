@@ -14,8 +14,8 @@ import 'rxjs/add/observable/interval'
 export class TimetableComponent implements OnInit {
 
     City: string;
-    Time: number = Date.now();
     Timetable;
+    Time: number;
     Error: string;
     isLoading = true;
 
@@ -23,6 +23,7 @@ export class TimetableComponent implements OnInit {
 
     ngOnInit() {
         this.City = this.params.get('city');
+        this.Time = Date.now();
 
         Observable.interval(60000).subscribe(result => {
             this.Time = Date.now();

@@ -31,15 +31,13 @@
                 <tr *ngIf="!Timetable.departures">
                     <td colspan="5"><strong>No Departure Information Found</strong></td>
                 </tr>
-                <div *ngIf="Timetable.departures">
-                    <tr *ngFor="let services of Timetable.departures.trainServices">
-                        <td> {{ services.std }}</td>
-                        <td> {{ services.origin[0].locationName }} ({{ services.origin[0].crs }}) </td>
-                        <td> {{ services.destination[0].locationName }} ({{ services.destination[0].crs }}) </td>
-                        <td [class.delayed]="services.etd!='On time'"> {{ services.etd }}</td>
-                        <td> {{ services.platform }}</td>
-                    </tr>
-                </div>
+                <tr *ngIf="Timetable.departures" *ngFor="let services of Timetable.departures.trainServices">
+                    <td> {{ services.std }}</td>
+                    <td> {{ services.origin[0].locationName }} ({{ services.origin[0].crs }}) </td>
+                    <td> {{ services.destination[0].locationName }} ({{ services.destination[0].crs }}) </td>
+                    <td [class.delayed]="services.etd!='On time'"> {{ services.etd }}</td>
+                    <td> {{ services.platform }}</td>
+                </tr>
             </tbody>
         </table>
         <!-- </div> -->
@@ -60,15 +58,13 @@
                 <tr *ngIf="!Timetable.arrivals">
                     <td colspan="5"><strong>No Arrival Information Found</strong></td>
                 </tr>
-                <div *ngIf="Timetable.arrivals">
-                    <tr *ngFor="let services of Timetable.arrivals.trainServices">
-                        <td> {{ services.sta }}</td>
-                        <td> {{ services.origin[0].locationName }} ({{ services.origin[0].crs }}) </td>
-                        <td> {{ services.destination[0].locationName }} ({{ services.destination[0].crs }}) </td>
-                        <td [class.delayed]="services.eta!='On time'"> {{ services.eta }}</td>
-                        <td> {{ services.platform }}</td>
-                    </tr>
-                </div>
+                <tr *ngIf="Timetable.arrivals" *ngFor="let sva of Timetable.arrivals.trainServices">
+                    <td> {{ sva.sta }}</td>
+                    <td> {{ sva.origin[0].locationName }} ({{ sva.origin[0].crs }}) </td>
+                    <td> {{ sva.destination[0].locationName }} ({{ sva.destination[0].crs }}) </td>
+                    <td [class.delayed]="services.eta!='On time'"> {{ sva.eta }}</td>
+                    <td> {{ sva.platform }}</td>
+                </tr>
             </tbody>
         </table>
         <!-- </div> -->
