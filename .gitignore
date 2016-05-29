@@ -22,6 +22,8 @@ build/
 [Pp]ublic/
 [Bb]in/
 [Oo]bj/
+*.js
+*.map
 
 # Visual Studio 2015 cache/options directory
 .vs/
