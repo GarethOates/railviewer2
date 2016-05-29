@@ -1,0 +1,76 @@
+<div *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin fa-3x"></i> Loading National Rail Data...
+</div>
+
+<div *ngIf="!isLoading" class="col-md-12 col-lg-12 container">
+    <h1>Live Departure & Arrival board for <strong>{{ City }}</strong></h1>
+
+    <div>
+        <div class="alert alert-danger" *ngIf=Error>
+            <span class="close" data-dismiss="alert">&times;</span>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
+            <span>Unable to load data for {{ City }}</span>
+        </div>
+
+        <div class="row col-md-1">
+            <h3 class="well well-sm pull-left">{{ Time | date:'HH:mm:ss' }}</h3></div>
+
+        <!-- <div class="col-md-6"> -->
+        <table class="table table-striped table-bordered">
+            <caption>Departures</caption>
+            <thead>
+                <tr>
+                    <th class="col-md-2">Time</th>
+                    <th class="col-md-4">Leaving From</th>
+                    <th class="col-md-4">To</th>
+                    <th class="col-md-1">Estimated</th>
+                    <th class="col-md-1">Platform</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!Timetable.departures">
+                    <td colspan="5"><strong>No Departure Information Found</strong></td>
+                </tr>
+                <div *ngIf="Timetable.departures">
+                    <tr *ngFor="let services of Timetable.departures.trainServices">
+                        <td> {{ services.std }}</td>
+                        <td> {{ services.origin[0].locationName }} ({{ services.origin[0].crs }}) </td>
+                        <td> {{ services.destination[0].locationName }} ({{ services.destination[0].crs }}) </td>
+                        <td [class.delayed]="services.etd!='On time'"> {{ services.etd }}</td>
+                        <td> {{ services.platform }}</td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+        <!-- </div> -->
+
+        <!--  <div class="col-md-6"> -->
+        <table class="table table-striped table-bordered">
+            <caption>Arrivals</caption>
+            <thead>
+                <tr>
+                    <th class="col-md-2">Time</th>
+                    <th class="col-md-4">Leaving From</th>
+                    <th class="col-md-4">To</th>
+                    <th class="col-md-1">Estimated</th>
+                    <th class="col-md-1">Platform</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!Timetable.arrivals">
+                    <td colspan="5"><strong>No Arrival Information Found</strong></td>
+                </tr>
+                <div *ngIf="Timetable.arrivals">
+                    <tr *ngFor="let services of Timetable.arrivals.trainServices">
+                        <td> {{ services.sta }}</td>
+                        <td> {{ services.origin[0].locationName }} ({{ services.origin[0].crs }}) </td>
+                        <td> {{ services.destination[0].locationName }} ({{ services.destination[0].crs }}) </td>
+                        <td [class.delayed]="services.eta!='On time'"> {{ services.eta }}</td>
+                        <td> {{ services.platform }}</td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+        <!-- </div> -->
+    </div>
+</div>
