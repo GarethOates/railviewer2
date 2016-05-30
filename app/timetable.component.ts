@@ -24,11 +24,11 @@ export class TimetableComponent implements OnInit {
     ngOnInit() {
         this.City = this.params.get('city');
         this.Time = Date.now();
+        this.loadData();
 
         Observable.interval(60000).subscribe(result => {
             this.Time = Date.now();
         });
-
 
         Observable.interval(60000).subscribe(() => {
             this.isLoading = true;
