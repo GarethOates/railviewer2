@@ -15,7 +15,7 @@ export class TimetableComponent implements OnInit {
 
     City: string;
     Timetable;
-    Time: number;
+    Time: number = Date.now();
     Error: string;
     isLoading = true;
 
@@ -25,7 +25,7 @@ export class TimetableComponent implements OnInit {
         this.City = this.params.get('city');
         this.Time = Date.now();
 
-        Observable.interval(60000).subscribe(result => {
+        Observable.interval(1000).subscribe(result => {
             this.Time = Date.now();
         });
 
