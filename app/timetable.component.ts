@@ -25,10 +25,18 @@ export class TimetableComponent implements OnInit {
         this.City = this.params.get('city');
         this.Time = Date.now();
 
-        Observable.interval(1000).subscribe(result => {
+        Observable.interval(60000).subscribe(result => {
             this.Time = Date.now();
         });
 
+
+        Observable.interval(60000).subscribe(() => {
+            this.isLoading = true;
+            this.loadData();
+        });
+    }
+
+    loadData() {
         if (this.City != "") {
             Observable.forkJoin(
                 this.dataService.getArrivals(this.City),
@@ -39,7 +47,7 @@ export class TimetableComponent implements OnInit {
                     this.Timetable = response;
                     this.isLoading = false;
                 }, error => {
-                this.isLoading = false;
+                    this.isLoading = false;
                     this.Error = error;
                 });
         }
