@@ -6,7 +6,7 @@
     <h1>Live Departure & Arrival board for <strong>{{ City }}</strong></h1>
 
     <div>
-        <div class="alert alert-danger" *ngIf=Error>
+        <div class="alert alert-danger" *ngIf="Error">
             <span class="close" data-dismiss="alert">&times;</span>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"> </span>
             <span>Unable to load data for {{ City }}</span>

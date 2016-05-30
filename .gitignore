@@ -24,6 +24,7 @@ build/
 [Oo]bj/
 *.js
 *.map
+!systemjs.config.js
 
 # Visual Studio 2015 cache/options directory
 .vs/
