@@ -26,7 +26,7 @@ export class TimetableComponent implements OnInit {
         this.Time = Date.now();
         this.loadData();
 
-        Observable.interval(60000).subscribe(result => {
+        Observable.interval(1000).subscribe(result => {
             this.Time = Date.now();
         });
 
