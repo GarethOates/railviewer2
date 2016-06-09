@@ -24,7 +24,7 @@ export class TimetableComponent implements OnInit {
     ngOnInit() {
         this.City = this.params.get('city');
         this.Time = Date.now();
-        this.loadData();
+        this.loadData(this.City);
 
         Observable.interval(1000).subscribe(result => {
             this.Time = Date.now();
@@ -32,15 +32,15 @@ export class TimetableComponent implements OnInit {
 
         Observable.interval(60000).subscribe(() => {
             this.isLoading = true;
-            this.loadData();
+            this.loadData(this.City);
         });
     }
 
-    loadData() {
-        if (this.City != "") {
+    loadData(city: string) {
+        if (city != "") {
             Observable.forkJoin(
-                this.dataService.getArrivals(this.City),
-                this.dataService.getDepartures(this.City)
+                this.dataService.getArrivals(city),
+                this.dataService.getDepartures(city)
             ).map(results => new Object({ arrivals: results[0], departures: results[1] }))
                 .subscribe(response => {
                     console.log(response);

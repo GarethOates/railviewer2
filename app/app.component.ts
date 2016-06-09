@@ -5,7 +5,7 @@ import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated'
 
 @RouteConfig([
   { path: '/timetables/:city', useAsDefault: true, name: "Main", component: TimetableComponent },
-  { path: '/*other', redirectTo: ['Main', { city: "Aberdeen"}] }
+  { path: '/**', redirectTo: ['Main', { city: "Aberdeen"}] }
 ])
 @Component({
   selector: 'my-app',
